@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -158,14 +159,22 @@ fun App() {
         ) {
             LazyColumn(
                 content = {
-                    items(listSavedTimes) {
+                    items(listSavedTimes.asReversed()) {
                         Row(
                             horizontalArrangement = Arrangement.SpaceBetween,
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(0.dp, 5.dp)
+                                .padding(0.dp, 10.dp)
                         ){
-                            Text(text = it.text, fontSize = 20.sp)
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Icon(imageVector =
+                                    ImageVector.vectorResource(id = R.drawable.clock),
+                                    tint = Color.Unspecified,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(30.dp)
+                                )
+                                Text(text = it.text, fontSize = 20.sp, modifier = Modifier.padding(10.dp, 0.dp))
+                            }
                             Text(
                                 text = formatNumber(listSavedTimes.indexOf(it) + 1),
                                 fontSize = 20.sp
